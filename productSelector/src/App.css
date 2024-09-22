@@ -1,0 +1,18 @@
+.button-group button {
+    margin: 5px;
+    padding: 10px;
+  }
+  
+  .button-group .active {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .product-list {
+    margin-top: 20px;
+  }
+  
+  .product-item {
+    margin: 10px 0;
+  }
+  
