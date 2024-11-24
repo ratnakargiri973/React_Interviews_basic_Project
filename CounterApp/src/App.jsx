@@ -20,3 +20,17 @@ function App() {
 }
 
 export default App
+
+// export default function App(){
+//     const [count, setCount] = useState(0);
+//     const [inputValue, setInputValue] = useState(0);
+//   return(
+//     <>
+//     <button onClick={()=>setCount(count + parseInt(inputValue || 0))}>+</button>
+//     {count}
+//     <button onClick={()=>setCount(count - parseInt(inputValue || 0 ))}>-</button>
+//     <input type="number" name="" id="" onChange={(e)=>setInputValue(e.target.value)}/>
+//     <button onClick={()=>setCount(0)}>Reset</button>
+//     </>
+//   )
+// }
