@@ -6,55 +6,70 @@ function App() {
   const [minutes, setMinutes] = useState(0);
   const interval = useRef(null);
 
-  useEffect(()=>{
-      interval.current = setInterval(()=>{
-        setTime((prevTime)=>{
-        if(prevTime<=0){
-          clearInterval(interval.current);
+  useEffect(() => {
+    if (running) {
+      interval.current = setInterval(() => {
+        setTime((prevTime) => {
+          if (prevTime <= 0) {
+            clearInterval(interval.current);
             setRunning(false);
             return 0;
-        }
-      else{
-        return prevTime -1;
-      }})
-      }, 1000)
+          } else {
+            return prevTime - 1;
+          }
+        });
+      }, 1000);
+    } else if (!running && interval.current) {
+      clearInterval(interval.current);
+    }
 
-      return () => clearInterval(interval.current);
-  },[running, time])
+    return () => clearInterval(interval.current);
+  }, [running]);
 
-  function handleStart(){
-    let totalTime = parseInt(minutes) * 60;
-    setTime(totalTime);
+  function handleStart() {
+    if (!running && time === 0) {
+      // Set the time only when the timer is starting for the first time or after reset
+      let totalTime = parseInt(minutes) * 60;
+      setTime(totalTime);
+    }
     setRunning(true);
   }
 
-  function handleStop(){
+  function handleStop() {
     setRunning(false);
   }
 
-  function handleReset(){
+  function handleReset() {
     setRunning(false);
     setTime(0);
   }
 
-  function handleTimer(time){
-     let min = Math.floor(time/60);
-     let sec = time % 60;
+  function handleTimer(time) {
+    let min = Math.floor(time / 60);
+    let sec = time % 60;
 
-     const formattedMin =  String(min).padStart(2, '0');
-     const formattedSec =  String(sec).padStart(2, '0');
- 
-     return `${formattedMin} : ${formattedSec}`
+    const formattedMin = String(min).padStart(2, '0');
+    const formattedSec = String(sec).padStart(2, '0');
+
+    return `${formattedMin} : ${formattedSec}`;
   }
+
   return (
     <div>
-      <input type="number" name="minute" id="minute" onChange={(e)=>setMinutes(e.target.value)}/>
+      <input
+        type="number"
+        name="minute"
+        id="minute"
+        onChange={(e) => setMinutes(e.target.value)}
+        disabled={running} 
+      />
       <p>{handleTimer(time)}</p>
       <button onClick={handleStart}>Start</button>
       <button onClick={handleStop}>Stop</button>
       <button onClick={handleReset}>Reset</button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
+

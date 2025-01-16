@@ -23,18 +23,18 @@ function App() {
   }
 
   function snakeCase(){
-    const updatedString = string.toLowerCase()                // Convert the entire string to lowercase
-    .replace(/\s+/g, '_')         // Replace all whitespace characters with underscores
-    .replace(/[^\w\-]+/g, '')     // Remove all non-alphanumeric characters except underscores and hyphens
-    .replace(/--+/g, '-')         // Replace multiple hyphens with a single hyphen (if needed)
+    const updatedString = string.toLowerCase()                
+    .replace(/\s+/g, '_') 
+    .replace(/--+/g, '-')          
+    .replace(/[^\w]+/g, '')            
     .replace(/^-+|-+$/g, '');
 
     setTransformedString(updatedString);
   }
 
   function kebabCase(){
-    const updatedString = string.toLowerCase()                // Convert the entire string to lowercase
-    .replace(/\s+/g, '-')         // Replace all whitespace characters with hyphens
+    const updatedString = string.toLowerCase()                
+    .replace(/\s+/g, '-')         
     .replace(/[^\w\-]+/g, '');
     setTransformedString(updatedString);
   }

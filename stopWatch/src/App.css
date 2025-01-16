@@ -1,0 +1,33 @@
+.Container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(68, 201, 137);
+}
+
+.timer{
+    width: 20rem;
+    height: 20rem;
+    border-radius: 100%;
+    background-color: rgb(36, 88, 140);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+.Btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+button{
+    border: none;
+    outline: none;
+    background-color: brown;
+    color: white;
+    padding: 10px 20px;
+}
