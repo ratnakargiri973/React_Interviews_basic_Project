@@ -13,7 +13,7 @@ function App() {
   const handleOperator = (op) => {
     setFirst(parseFloat(input));
     setOperator(op);
-    setInput("");
+    setInput(input + op); // Show the operator in the input field
   };
 
   const handleClear = () => {
@@ -23,8 +23,9 @@ function App() {
   };
 
   const handleCalculate = () => {
-    const second = parseFloat(input);
+    const second = parseFloat(input.split(operator).pop()); // Extract the second operand
     let res = 0;
+
     if (operator === "+") {
       res = first + second;
     } else if (operator === "-") {
@@ -40,7 +41,8 @@ function App() {
     } else if (operator === "√") {
       res = Math.sqrt(first);
     }
-    setInput(res.toString());
+
+    setInput(res.toString()); // Display only the result
     setFirst(null);
     setOperator(null);
   };
