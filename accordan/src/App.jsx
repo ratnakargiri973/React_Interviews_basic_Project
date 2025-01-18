@@ -1,53 +1,8 @@
-// import React from 'react'
-// import { useState } from 'react'
-
-// function App() {
-//   const [id, setId] = useState(1);
-
-//     const data=[
-//         {
-//             title:"para1",
-//             contenet:"para1"
-
-//         },
-//         {
-//             title:"para2",
-//             contenet:"para2"
-
-//         },
-//         {
-//             title:"para3",
-//             contenet:"para3"
-
-//         },
-//     ]
-//     return(
-//         <>
-//         {
-//             data.map((item,index)=>{
-//                 return(
-//                     <>
-//                     <h1>{item.title}</h1>
-//                     <button onClick={()=>setId(index+1)}>➕</button>
-//                     {id===index+1&&<p>{item.contenet}</p>}
-//                     </>
-//                 )
-//             })
-//         }
-        
-//         </>
-//     )
-    
-// }
-
-// export default App
-
-
-
 import React, { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [id, setId] = useState(null);  // Initially no content is shown
+  const [id, setId] = useState(null); // Initially no content is shown
 
   const data = [
     {
@@ -64,17 +19,23 @@ function App() {
     },
   ];
 
+  const handleToggle = (index) => {
+    setId(id === index + 1 ? null : index + 1); // Toggle content visibility
+  };
+
   return (
     <>
-      {data.map((item, index) => {
-        return (
-          <div key={index}>
+      {data.map((item, index) => (
+        <div key={index}>
+          <div className="question">
             <h1>{item.title}</h1>
-            <button onClick={() => setId(index + 1)}>➕</button>
-            {id === index + 1 && <p>{item.content}</p>} {/* Conditionally display content */}
+            <button onClick={() => handleToggle(index)}>
+              {id === index + 1 ? "➖" : "➕"} {/* Toggle between + and - */}
+            </button>
           </div>
-        );
-      })}
+          {id === index + 1 && <p>{item.content}</p>}
+        </div>
+      ))}
     </>
   );
 }
